@@ -38,15 +38,19 @@ printf "y\n" | sudo ufw enable
 sudo systemctl restart apache2
 
 #If you are working on a cloud system with a firewall comment everything related to ufw and uncomment this:
+
 #if [ -n "$( (apt-cache policy iptables-persistent | grep none) )" ]; then
 #sudo apt install -y iptables-persistent
 #fi
+#
 #if [ -n "$( (netstat -ntlp | awk '{print $4}' | grep "[0-9:]*:80$") )" ]; then
 #sudo iptables -I INPUT 1 -m state --state NEW -p tcp --dport 80 -j ACCEPT
 #fi
+#
 #if [ -n "$( (netstat -ntlp | awk '{print $4}' | grep "[0-9:]*:443$") )" ]; then
 #sudo iptables -I INPUT 2 -m state --state NEW -p tcp --dport 443 -j ACCEPT
 #fi
+#
 #sudo netfilter-persistent save
 
 echo -e "\nInstalling PHP\n"
