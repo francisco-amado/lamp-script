@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web:
+    build: web
+    ports:
+      - "8080:80"
+    depends_on:
+      - "db"
+  db:
+    build: db
+    image: mariadb:latest
+    ports:
+      - "3306:3306"
+    environment:
+      #Change the password here or in the secure installation script (preferrably)
+      MARIADB_ROOT_PASSWORD: root
+      #Run the following command after provisioning the container:
+      #mysql_secure_installation 
