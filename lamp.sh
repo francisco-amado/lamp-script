@@ -4,6 +4,8 @@
 
 echo -e "Updating and upgrading the system\n"
 sudo apt update -y && sudo apt upgrade -y
+sudo apt install -y net-tools
+sudo apt install -y apt-utils
 
 echo -e "\nInstalling the Apache server and enabling rewrite and ssl modules\n"
 sudo apt install -y apache2
@@ -39,8 +41,12 @@ sudo systemctl restart apache2
 #if [ -n "$( (apt-cache policy iptables-persistent | grep none) )" ]; then
 #sudo apt install -y iptables-persistent
 #fi
+#if [ -n "$( (netstat -ntlp | awk '{print $4}' | grep "[0-9:]*:80$") )" ]; then
 #sudo iptables -I INPUT 1 -m state --state NEW -p tcp --dport 80 -j ACCEPT
+#fi
+#if [ -n "$( (netstat -ntlp | awk '{print $4}' | grep "[0-9:]*:443$") )" ]; then
 #sudo iptables -I INPUT 2 -m state --state NEW -p tcp --dport 443 -j ACCEPT
+#fi
 #sudo netfilter-persistent save
 
 echo -e "\nInstalling PHP\n"
